@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <ApplicationIcon />
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20191102135313_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191102135313_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191102155646_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191102155646_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191102155819_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191102155819_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20191102160338_InitialCreate.cs" />
+    <Compile Remove="Migrations\20191102160338_InitialCreate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>
