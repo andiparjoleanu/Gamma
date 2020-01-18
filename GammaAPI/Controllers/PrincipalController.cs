@@ -191,6 +191,17 @@ namespace GammaAPI.Controllers
                 var teachers = await _repositoryWrapper.TeacherRepository.GetAllAsync();
                 var teacher = teachers.FirstOrDefault(t => t.MemberId == teacherVM.MemberId);
 
+                if(teacher.Department != teacherVM.Department)
+                {
+                    var courses = await _repositoryWrapper.CourseRepository.GetAllAsync();
+                    var coursesToDelete = courses.Where(c => c.TeacherId == teacher.MemberId);
+
+                    foreach(var course in coursesToDelete)
+                    {
+                        _repositoryWrapper.CourseRepository.Delete(course);
+                    }
+                }
+
                 teacher.Department = teacherVM.Department;
 
                 _repositoryWrapper.TeacherRepository.Update(teacher);

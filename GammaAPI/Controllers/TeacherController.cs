@@ -134,21 +134,6 @@ namespace GammaAPI.Controllers
 
                 await _repositoryWrapper.CourseRepository.CreateAsync(course);
 
-                /*var students = await _repositoryWrapper.StudentRepository.GetAllAsync();
-                var studentsCourse = students.Where(s => s.Grade == course.Grade && s.FieldOfStudy == course.FieldOfStudy);
-
-                foreach(var student in studentsCourse)
-                {
-                    StudentCourse studentCourse = new StudentCourse
-                    {
-                        CourseId = course.Id,
-                        StudentId = student.MemberId,
-                        Marks = new List<Mark>()
-                    };
-
-                    await _repositoryWrapper.StudentCourseRepository.CreateAsync(studentCourse);
-                }*/
-
                 return new ResultVM
                 {
                     Status = Status.Success,
@@ -160,6 +145,19 @@ namespace GammaAPI.Controllers
             {
                 Status = Status.Error,
                 Message = "Cererea nu a putut fi procesată"
+            };
+        }
+
+        [HttpGet("getTeacherInfo/{teacherid}")]
+        public async Task<TeacherVM> GetTeacherInfo(string teacherid)
+        {
+            var teachers = await _repositoryWrapper.TeacherRepository.GetAllAsync();
+            var teacher = teachers.FirstOrDefault(t => t.MemberId == teacherid);
+
+            return new TeacherVM
+            {
+                MemberId = teacherid,
+                Department = teacher.Department
             };
         }
 
@@ -302,7 +300,7 @@ namespace GammaAPI.Controllers
 
             if(studentMarks != null)
             {
-                foreach (var mark in marks)
+                foreach (var mark in studentMarks)
                 {
                     markVMs.Add(new MarkVM
                     {

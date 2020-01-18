@@ -138,6 +138,23 @@ namespace GammaAPI.Controllers
 
                 if (result.Succeeded)
                 {
+                    var roles = _roleManager.Roles.ToList();
+                    if(roles.Count == 0)
+                    {
+                        IdentityRole role = new IdentityRole
+                        {
+                            Name = "Administrator"
+                        };
+
+                        IdentityResult identityResult = await _roleManager.CreateAsync(role);
+
+                        if(identityResult.Succeeded)
+                        {
+                            await _userManager.AddToRoleAsync(user, role.Name);
+                        }
+
+                    }
+
                     await _signInManager.SignInAsync(user, true);
 
                     return new ResultVM
