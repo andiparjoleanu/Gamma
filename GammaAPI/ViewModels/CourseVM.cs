@@ -12,6 +12,7 @@ namespace GammaAPI.ViewModels
         public string CourseId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string Lesson { get; set; }
         public string TeacherId { get; set; }
     }
 }

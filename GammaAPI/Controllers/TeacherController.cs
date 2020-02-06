@@ -64,7 +64,8 @@ namespace GammaAPI.Controllers
                 Name = course.Name,
                 Description = course.Description,
                 FieldOfStudy = course.FieldOfStudy,
-                Grade = course.Grade
+                Grade = course.Grade,
+                Lesson = course.Lesson
             };
         }
 
@@ -95,6 +96,7 @@ namespace GammaAPI.Controllers
 
                 course.Description = courseVM.Description;
                 course.Grade = courseVM.Grade;
+                course.Lesson = courseVM.Lesson;
 
                 _repositoryWrapper.CourseRepository.Update(course);
 
